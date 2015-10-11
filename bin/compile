@@ -16,6 +16,7 @@ fi
 echo "-----> Copying PhantomJS binary to ${BUILD_DIR}/vendor/phantomjs/bin"
 mkdir -p $BUILD_DIR/vendor/phantomjs/bin
 cp -f $CACHE_DIR/phantomjs $BUILD_DIR/vendor/phantomjs/bin
+chmod a+x $BUILD_DIR/vendor/phantomjs/bin/phantomjs
 
 echo "-----> exporting PATH and LIBRARY_PATH"
 PROFILE_PATH="$BUILD_DIR/.profile.d/phantomjs.sh"
