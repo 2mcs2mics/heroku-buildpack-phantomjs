@@ -5,12 +5,14 @@ set -e
 BUILD_DIR=$1
 CACHE_DIR=$2
 
-BINARY_URL="https://github.com/Pyppe/phantomjs2.0-ubuntu14.04x64/blob/master/bin/phantomjs?raw=true"
+BINARY_URL="https://github.com/Vitallium/phantomjs/releases/download/2.0.1/phantomjs-2.0.1-linux-x86_64.zip"
+BINARY_LOCATION="phantomjs-2.0.1-linux-x86_64/bin/phantomjs"
 
 mkdir -p $CACHE_DIR
 if ! [ -e $CACHE_DIR/phantomjs ]; then
   echo "-----> Fetching PhantomJS binary at ${BINARY_URL}"
-  curl $BINARY_URL -L -s -o $CACHE_DIR/phantomjs
+  curl $BINARY_URL -L -s -o $CACHE_DIR/phantomjs.zip
+  unzip -j $CACHE_DIR/phantomjs.zip $BINARY_LOCATION -d $CACHE_DIR
 fi
 
 echo "-----> Copying PhantomJS binary to ${BUILD_DIR}/vendor/phantomjs/bin"
