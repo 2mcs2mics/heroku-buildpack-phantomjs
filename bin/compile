@@ -9,15 +9,15 @@ BINARY_URL="https://github.com/Vitallium/phantomjs/releases/download/2.0.1/phant
 BINARY_LOCATION="phantomjs-2.0.1-linux-x86_64/bin/phantomjs"
 
 mkdir -p $CACHE_DIR
-if ! [ -e $CACHE_DIR/phantomjs ]; then
+if ! [ -e $CACHE_DIR/$BINARY_LOCATION ]; then
   echo "-----> Fetching PhantomJS binary at ${BINARY_URL}"
   curl $BINARY_URL -L -s -o $CACHE_DIR/phantomjs.zip
-  unzip -j $CACHE_DIR/phantomjs.zip $BINARY_LOCATION -d $CACHE_DIR
+  unzip $CACHE_DIR/phantomjs.zip -d $CACHE_DIR
 fi
 
 echo "-----> Copying PhantomJS binary to ${BUILD_DIR}/vendor/phantomjs/bin"
 mkdir -p $BUILD_DIR/vendor/phantomjs/bin
-cp -f $CACHE_DIR/phantomjs $BUILD_DIR/vendor/phantomjs/bin
+cp -f $CACHE_DIR/$BINARY_LOCATION $BUILD_DIR/vendor/phantomjs/bin
 chmod a+x $BUILD_DIR/vendor/phantomjs/bin/phantomjs
 
 echo "-----> exporting PATH and LIBRARY_PATH"
